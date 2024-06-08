@@ -1,4 +1,4 @@
-package com.example.paymobmovieapp.data.model
+package com.example.paymobmovieapp.data.source.remote.model
 
 import com.google.gson.annotations.SerializedName
 

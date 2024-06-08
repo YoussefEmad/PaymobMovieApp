@@ -1,6 +1,6 @@
 package com.example.paymobmovieapp.data.source.remote
 
-import com.example.paymobmovieapp.data.model.MovieResponse
+import com.example.paymobmovieapp.data.source.remote.model.MovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

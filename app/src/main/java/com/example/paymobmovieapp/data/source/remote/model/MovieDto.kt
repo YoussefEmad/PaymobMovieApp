@@ -1,4 +1,4 @@
-package com.example.paymobmovieapp.data.model
+package com.example.paymobmovieapp.data.source.remote.model
 
 import com.example.paymobmovieapp.domain.model.Movie
 import com.google.gson.annotations.SerializedName
@@ -23,6 +23,7 @@ data class MovieDto(
 
 fun MovieDto.toDto(): Movie {
     return Movie(
+        id = this.id,
         moviePoster = this.posterPath,
         movieName = this.title,
         releaseDate = this.releaseDate,
