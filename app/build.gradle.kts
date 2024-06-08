@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
-
 android {
     namespace = "com.example.paymobmovieapp"
     compileSdk = 34
@@ -34,6 +35,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+
+    }
 }
 
 dependencies {
@@ -43,9 +48,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    // Retrofit
+    // Retrofit & coroutine
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.retrofit.coroutines.adapter)
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
 
     // OkHttp
     implementation(libs.okhttp)
@@ -64,9 +72,15 @@ dependencies {
 
     // Dagger Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.swiperefreshlayout)
+    kapt(libs.hilt.compiler)
+
     //test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+}
+kapt {
+    correctErrorTypes = true
 }
