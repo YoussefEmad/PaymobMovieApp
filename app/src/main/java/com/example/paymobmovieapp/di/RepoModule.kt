@@ -9,6 +9,7 @@ import com.example.paymobmovieapp.data.source.remote.MovieApiService
 import com.example.paymobmovieapp.data.source.remote.MoviesRemoteDataSource
 import com.example.paymobmovieapp.domain.repository.MovieRepository
 import com.example.paymobmovieapp.domain.usecase.GetMoviesUseCase
+import com.example.paymobmovieapp.domain.usecase.UpdateMovieUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,5 +51,12 @@ object RepoModule {
         movieDao: MovieDao
     ): IMovieLocalDataSource {
         return MoviesLocalDataSource(movieDao)
+    }
+    @Provides
+    @Singleton
+    fun provideUpdateMovieUseCase(
+        movieRepository: MovieRepository
+    ): UpdateMovieUseCase {
+        return UpdateMovieUseCase(movieRepository)
     }
 }
