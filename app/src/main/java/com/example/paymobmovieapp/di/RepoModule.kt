@@ -1,6 +1,9 @@
 package com.example.paymobmovieapp.di
 
 import com.example.paymobmovieapp.data.repository.MovieRepositoryImpl
+import com.example.paymobmovieapp.data.source.local.IMovieLocalDataSource
+import com.example.paymobmovieapp.data.source.local.MovieDao
+import com.example.paymobmovieapp.data.source.local.MoviesLocalDataSource
 import com.example.paymobmovieapp.data.source.remote.IMovieRemoteDatasource
 import com.example.paymobmovieapp.data.source.remote.MovieApiService
 import com.example.paymobmovieapp.data.source.remote.MoviesRemoteDataSource
@@ -19,9 +22,10 @@ object RepoModule {
     @Provides
     @Singleton
     fun provideMovieRepository(
-        moviesRemoteDataSource: IMovieRemoteDatasource
+        moviesRemoteDataSource: IMovieRemoteDatasource,
+        movieLocalDataSource: IMovieLocalDataSource
     ): MovieRepository {
-        return MovieRepositoryImpl(moviesRemoteDataSource)
+        return MovieRepositoryImpl(moviesRemoteDataSource,movieLocalDataSource)
     }
 
     @Provides
@@ -34,9 +38,17 @@ object RepoModule {
 
     @Provides
     @Singleton
-    fun provideIOnlineDataSource(
+    fun provideMovieRemoteDataSource(
         service: MovieApiService
     ): IMovieRemoteDatasource {
         return MoviesRemoteDataSource(service)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieLocalDataSource(
+        movieDao: MovieDao
+    ): IMovieLocalDataSource {
+        return MoviesLocalDataSource(movieDao)
     }
 }
