@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.paymobmovieapp.R
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -56,8 +57,8 @@ fun Fragment.showDialog(
 
 
 fun ImageView.loadImage(url: String ?) {
-    Glide.with(context).load(url)
-      //  .placeholder(R.drawable.placeholder)
+    Glide.with(context).load("https://image.tmdb.org/t/p/w500$url")
+        .placeholder(R.drawable.placeholder)
         //.error(R.drawable.placeholder)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)

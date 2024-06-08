@@ -4,6 +4,8 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 android {
     namespace = "com.example.paymobmovieapp"
@@ -61,6 +63,7 @@ dependencies {
 
     // Glide
     implementation(libs.glide)
+    kapt(libs.glide.compiler)
 
     // Room
     implementation(libs.room.runtime)

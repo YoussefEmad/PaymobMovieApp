@@ -29,7 +29,9 @@ fun MovieDto.toMovie(): Movie {
         movieName = this.title,
         releaseDate = this.releaseDate,
         rating = this.voteAverage,
-        isFavorite = false
+        isFavorite = false,
+        overview = this.overview,
+        originalTitle = this.originalTitle
     )
 }
 fun MovieDto.toMovieLocal(): MovieLocal {

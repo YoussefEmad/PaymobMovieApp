@@ -16,6 +16,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    const val BASE_URL = "https://api.themoviedb.org/3/"
+    const val APAPI_KEY = "c145dac51f51a9eeb873673b760304ed"
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
@@ -30,7 +32,7 @@ object NetworkModule {
                 val originalRequest = chain.request()
                 val originalUrl = originalRequest.url
                 val url = originalUrl.newBuilder()
-                    .addQueryParameter("api_key", "c145dac51f51a9eeb873673b760304ed")
+                    .addQueryParameter("api_key", APAPI_KEY)
                     .build()
                 val requestBuilder = originalRequest.newBuilder().url(url)
                     .addHeader("Accept", "application/json")
@@ -44,7 +46,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(BASE_URL)
             .build()
     }
 

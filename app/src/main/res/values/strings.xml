@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PaymobMovieApp</string>
+    <string name="vote">vote</string>
 </resources>
