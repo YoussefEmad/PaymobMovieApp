@@ -1,5 +1,6 @@
 package com.example.paymobmovieapp.data.source.remote.model
 
+import com.example.paymobmovieapp.data.source.local.MovieLocal
 import com.example.paymobmovieapp.domain.model.Movie
 import com.google.gson.annotations.SerializedName
 
@@ -21,8 +22,18 @@ data class MovieDto(
     @SerializedName("vote_count") val voteCount: Int? = null
 )
 
-fun MovieDto.toDto(): Movie {
+fun MovieDto.toMovie(): Movie {
     return Movie(
+        id = this.id,
+        moviePoster = this.posterPath,
+        movieName = this.title,
+        releaseDate = this.releaseDate,
+        rating = this.voteAverage,
+        isFavorite = false
+    )
+}
+fun MovieDto.toMovieLocal(): MovieLocal {
+    return MovieLocal(
         id = this.id,
         moviePoster = this.posterPath,
         movieName = this.title,

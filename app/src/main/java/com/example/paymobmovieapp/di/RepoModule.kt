@@ -1,5 +1,6 @@
 package com.example.paymobmovieapp.di
 
+import com.example.paymobmovieapp.common.NetworkAwareHandler
 import com.example.paymobmovieapp.data.repository.MovieRepositoryImpl
 import com.example.paymobmovieapp.data.source.local.IMovieLocalDataSource
 import com.example.paymobmovieapp.data.source.local.MovieDao
@@ -24,9 +25,10 @@ object RepoModule {
     @Singleton
     fun provideMovieRepository(
         moviesRemoteDataSource: IMovieRemoteDatasource,
-        movieLocalDataSource: IMovieLocalDataSource
+        movieLocalDataSource: IMovieLocalDataSource,
+        networkAwareHandler: NetworkAwareHandler
     ): MovieRepository {
-        return MovieRepositoryImpl(moviesRemoteDataSource,movieLocalDataSource)
+        return MovieRepositoryImpl(moviesRemoteDataSource,movieLocalDataSource,networkAwareHandler)
     }
 
     @Provides

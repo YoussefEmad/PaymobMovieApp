@@ -2,6 +2,8 @@ package com.example.paymobmovieapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.paymobmovieapp.common.NetworkAwareHandler
+import com.example.paymobmovieapp.common.NetworkHandlerImpl
 import com.example.paymobmovieapp.data.source.local.MovieDataBase
 import dagger.Module
 import dagger.Provides
@@ -28,5 +30,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideMovieDao(db: MovieDataBase) = db.getMovieDao()
+
+    @Provides
+    @Singleton
+    fun provideINetworkAwareHandler( @ApplicationContext context: Context)
+            = NetworkHandlerImpl(context) as NetworkAwareHandler
 
 }

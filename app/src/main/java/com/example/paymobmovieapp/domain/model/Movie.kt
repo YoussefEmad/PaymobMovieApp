@@ -8,3 +8,4 @@ data class Movie(
     val rating: Double? = null,
     var isFavorite: Boolean = false
     )
+
